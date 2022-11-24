@@ -39,7 +39,6 @@ const Search = ({ books, updateBook }) => {
   }, [searchText]);
 
   useEffect(() => {
-    //console.log('Search.booksSearched:', booksSearched)
   }, [booksSearched]);
 
   return (
