@@ -4,6 +4,12 @@ import { Link } from "react-router-dom";
 
 const BookList = ({ books, updateBook }) => {
 
+  const shelves = [
+    { name: 'Currently Reading', category: 'currentlyReading' },
+    { name: 'Want To Read', category: 'wantToRead' },
+    { name: 'Read', category: 'read' },
+  ]
+
   return (
     <div className="list-books">
       <div className="list-books-title">
@@ -11,9 +17,13 @@ const BookList = ({ books, updateBook }) => {
       </div>
       <div className="list-books-content">
         <div>
-          <Bookshelf updateBook={updateBook} books={books.filter((book) => book.shelf === 'currentlyReading')} shelf="Currently Reading" />
-          <Bookshelf updateBook={updateBook} books={books.filter((book) => book.shelf === 'wantToRead')} shelf="Want To Read" />
-          <Bookshelf updateBook={updateBook} books={books.filter((book) => book.shelf === 'read')} shelf="Read" />
+          {shelves.map((shelf) =>
+            <Bookshelf
+              key={shelf.category}
+              updateBook={updateBook}
+              books={books.filter((book) => book.shelf === shelf.category)}
+              shelf={shelf.name} />
+          )}
         </div>
       </div>
       <div className="open-search">
